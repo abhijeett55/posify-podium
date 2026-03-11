@@ -1,1 +1,81 @@
-<p>register works!</p>
+<div class="login-container">
+  <h1 class="title">Welcome to Podium</h1>
+
+  <div class="login-card">
+    <h2>Create new account</h2>
+    <p class="subtitle">Create account by login with:</p>
+
+    <div class="social-buttons">
+      <button type="button" class="social-btn google" (click)="registerWithGoogle()">
+        <img src="assets/search.png" alt="Google logo" class="btn-icon" /> Google
+      </button>
+      
+    </div>
+
+    <div class="divider">
+      <span>OR CREATE NEW ACCOUNT</span>
+    </div>
+
+    <!-- Registration Form -->
+    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="John Doe"
+        ngModel
+        required
+      />
+
+      <label>Username</label>
+      <input
+        type="text"
+        name="username"
+        placeholder="jdoe"
+        ngModel
+        required
+      />
+
+      <label>E-mail</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="name@domain.com"
+        ngModel
+        required
+        email
+      />
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        ngModel
+        required
+        minlength="6"
+      />
+
+      <label>Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        ngModel
+        required
+      />
+
+      <button
+        type="submit"
+        class="login-btn"
+        [disabled]="registerForm.invalid"
+      >
+        Create account
+      </button>
+    </form>
+
+    <div class="links">
+      <p>Already have an account? <a routerLink="/login">Sign in</a></p>
+    </div>
+  </div>
+</div>
