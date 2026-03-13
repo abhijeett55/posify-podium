@@ -1,22 +1,45 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router'
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule} from '@angular/common';
+import { Auth } from '../../_services/auth';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-register',
-  imports: [ CommonModule, FormsModule],
+  standalone: true,
+  imports: [ CommonModule, FormsModule , RouterModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class Register {
+
+  constructor(private router: Router, private authService: Auth) { }
   registerWithGoogle() {
     console.log("Registered");
   }
 
   onRegister(form: NgForm) {
-    if(form.valid) {
-      console.log("Login Date: ", form.value);
+    if(form.invalid) return;
+
+    const { name, email, password, confirmPassword } = form.value;
+
+    if(password !== confirmPassword) {
+      console.error('Password do not match');
+      return;
     }
+
+
+    this.authService.register(email, password).subscribe({
+      next: (res) => {
+        console.log('Registration success', res);
+        this.authService.saveUserData(res.token , res.user);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('Registration failed', err);
+      }
+    });
   }
 }
