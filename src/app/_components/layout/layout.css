@@ -1,28 +1,41 @@
-.app-layout {
+/* Full application layout */
+.app-layout{
   display: flex;
-  min-height: 100vh;
-}
-
-/*.sidebar {
-  flex-shrink: 0;
-}*/
-
-.sidebar {
-  background: red !important;
-  width: 260px !important;
-  display: block !important;
-}
-
-.main-content {
-  flex: 1;
-  padding: 20px;
-  background: #f5f7fa;
-}
-
-:host {
-  display: block;
-  width: 260px;
+  flex-direction: column;
   height: 100vh;
-  background: white;
-  border-right: 1px solid #e0e0e0;
+}
+
+/* header */
+app-header{
+  height:60px;
+  flex-shrink:0;
+}
+
+/* body area */
+.layout-body{
+  display:flex;
+  flex:1;
+  overflow:hidden;
+}
+
+/* sidebar */
+app-sidebar{
+  width:260px;
+  background:#f4f4f4;
+  border-right:1px solid #ddd;
+  overflow-y:auto;
+}
+
+/* dashboard/content */
+.main-content{
+  flex:1;
+  padding:30px;
+  background:#f8fafc;
+  overflow-y:auto;
+}
+
+/* footer */
+app-footer{
+  height:50px;
+  flex-shrink:0;
 }
