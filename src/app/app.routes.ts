@@ -6,9 +6,10 @@ import { Register } from './_components/register/register';
 import { Dashboard } from './_components/dashboard/dashboard';
 
 export const routes: Routes = [
+    
     { path: 'login', component:Login},
     { path: 'register', component:Register},
     { path: 'dashboard', component:Dashboard},
-    { path: '', redirectTo: '/login', pathMatch: 'full' }
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 
 ];
