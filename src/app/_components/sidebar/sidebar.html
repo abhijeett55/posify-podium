@@ -14,5 +14,11 @@
     </ul>
   </nav>
 
+    <div class="user-info" *ngIf="user">
+    <p class="name">{{ user.name || 'User' }}</p>
+    <p class="email">{{ user.email }}</p>
+    <p class="build">build: 0.0.0-beta-01</p>
+  </div>
+
   
 </aside>

@@ -1,1 +1,16 @@
-<p>header works!</p>
+<header class="app-header">
+  <div class="header-left">
+    <!-- Optional: logo or search bar -->
+    <div class="search-container">
+      <input type="text" placeholder="Search..." class="search-input">
+      <button class="search-btn">🔍</button>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="user-info" *ngIf="user">
+      <span class="user-email">{{ user.email }}</span>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</header>

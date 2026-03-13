@@ -1,0 +1,28 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/*.sidebar {
+  flex-shrink: 0;
+}*/
+
+.sidebar {
+  background: red !important;
+  width: 260px !important;
+  display: block !important;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background: #f5f7fa;
+}
+
+:host {
+  display: block;
+  width: 260px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+}
