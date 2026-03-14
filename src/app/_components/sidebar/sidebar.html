@@ -1,18 +1,61 @@
 <aside class="sidebar">
-  <div class="logo">Podium</div>
-
   <nav class="nav">
-    <h3>Navigation</h3>
-    <ul>
-      <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-      <li><a routerLink="/sales" routerLinkActive="active">Sales</a></li>
-      <li><a routerLink="/projects" routerLinkActive="active">Projects</a></li>
-      <li><a routerLink="/emails" routerLinkActive="active">E-mails</a></li>
-      <li><a routerLink="/invoices" routerLinkActive="active">Invoices</a></li>
-      <li><a routerLink="/reports" routerLinkActive="active">Reports</a></li>
-      <li><a routerLink="/documents" routerLinkActive="active">Documents</a></li>
-    </ul>
-  </nav>
+  <h3>Navigation</h3>
+
+  <ul>
+
+    <li>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <img src="assets/dashboard.png" class="icon">
+        Dashboard
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/sales" routerLinkActive="active">
+        <img src="assets/sales.png" class="icon">
+        Sales
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/projects" routerLinkActive="active">
+        <img src="assets/project.png" class="icon">
+        Projects
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/emails" routerLinkActive="active">
+        <img src="assets/mail.png" class="icon">
+        E-mails
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/invoices" routerLinkActive="active">
+        <img src="assets/invoice.png" class="icon">
+        Invoices
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/reports" routerLinkActive="active">
+        <img src="assets/report.png" class="icon">
+        Reports
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/documents" routerLinkActive="active">
+        <img src="assets/document.png" class="icon">
+        Documents
+      </a>
+    </li>
+
+  </ul>
+</nav>
+
 
     <div class="user-info" *ngIf="user">
     <p class="name">{{ user.name || 'User' }}</p>
