@@ -1,0 +1,102 @@
+<div class="documents-page">
+
+  <div class="page-header">
+    <h1>Documents</h1>
+    <p>Manage your documents</p>
+  </div>
+
+  <hr>
+
+  <!-- Upload Buttons -->
+  <div class="upload-buttons">
+    <!-- Hidden file inputs -->
+    <input
+      type="file"
+      #pdfUpload
+      style="display: none"
+      accept=".pdf"
+      (change)="onFileSelected($event, 'pdf')"
+    />
+    <input
+      type="file"
+      #imageUpload
+      style="display: none"
+      accept="image/*"
+      (change)="onFileSelected($event, 'image')"
+    />
+    <input
+      type="file"
+      #otherUpload
+      style="display: none"
+      accept="*/*"
+      (change)="onFileSelected($event, 'other')"
+    />
+    <button class="upload-btn"  (click)="pdfUpload.click()">Upload PDF</button>
+    <button class="upload-btn" (click)="imageUpload.click()">Upload images</button>
+    <button class="upload-btn" (click)="otherUpload.click()">Upload other</button>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-box">
+    <input 
+    type="text"
+    placeholder="Filter documents..." 
+    [(ngModel)]="filterText"
+    />
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table>
+
+      <thead>
+        <tr>
+          <th style="width: 30px">
+            <input
+              type="checkbox"
+              [checked]="areAllVisibleSelected()"
+              [indeterminate]="isIndeterminate()"
+              (change)="toggleAll($event)"
+            />
+          </th>
+          <th>Date Created</th>
+          <th>Assigned to</th>
+          <th>Document name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngIf="allDocuments.length === 0">
+          <td colspan="4" class="no-results">No results.</td>
+        </tr>
+
+        <tr *ngFor="let doc of paginatedDocuments">
+          <td>{{doc.dateCreated}}</td>
+          <td>{{doc.assignedTo}}</td>
+          <td>{{doc.name}}</td>
+          <td>{{doc.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <span>{{ selectedCount }} of {{ filteredDocuments.length }} row(s) selected.</span>
+
+    <div class="page-controls">
+      Rows per page
+      <select [ngModel]="rowsPerPage" (ngModelChange)="onRowsPerPageChange($event)">
+        <option *ngFor="let opt of rowsPerPageOptions" [value]="opt">{{ opt }}</option>
+      </select>
+
+      <span>
+        <button (click)="prevPage()" [disabled]="currentPage === 1">⟨</button>
+        Page {{ currentPage }} of {{ totalPages }}
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages || totalPages === 0">⟩</button>
+      </span>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { Register } from './_components/register/register';
 import { Dashboard } from './_components/dashboard/dashboard';
 import { Layout } from './_components/layout/layout';
 import { Sales } from './_components/sales/sales';
+import { DocumentComponent } from './_components/document/document';
 
 export const routes: Routes = [
     
@@ -16,8 +17,9 @@ export const routes: Routes = [
     component: Layout,
     children: [
       { path: 'dashboard', component: Dashboard},
-      { path: 'sales', component: Sales }
+      { path: 'sales', component: Sales },
+      { path: 'document', component: DocumentComponent}
     ]
   },
-    { path: '**', redirectTo: '/login' }
+    { path: '**', redirectTo: '/document' }
 ];
