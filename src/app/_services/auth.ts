@@ -43,6 +43,7 @@ export class Auth {
   saveUserData(token: string, user: any): void {
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('token', token);
+        localStorage.setItem("userEmail", user.email);
         localStorage.setItem('user', JSON.stringify(user));
     }
     this.currentUserSubject.next(user);

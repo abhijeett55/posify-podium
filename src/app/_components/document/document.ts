@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DocumentService } from '../../_services/document.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 
 export interface Document {
-  id: number;
+  id: string;
   dateCreated: string;
   assignedTo: string;
   name: string;
@@ -20,6 +24,7 @@ export interface Document {
   styleUrl: './document.css',
 })
 export class DocumentComponent {
+  constructor(private documentService: DocumentService,  @Inject(PLATFORM_ID) private platformId: Object) {}
 
   allDocuments: Document[] = [];
 
@@ -30,26 +35,58 @@ export class DocumentComponent {
   rowsPerPageOptions = [10, 20, 50];
 
   onFileSelected(event: Event, type: string) {
+
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const element = event.currentTarget as HTMLInputElement;
-    const fileList: FileList | null = element.files;
+    const fileList = element.files;
 
     if (fileList && fileList.length > 0) {
+
       const file = fileList[0];
 
-      console.log(`Uploading ${type}:`, file.name);
+      const email = localStorage.getItem("userEmail") || "";
 
-      const newDoc: Document = {
-        id: Date.now(),
-        dateCreated: new Date().toLocaleDateString(),
-        assignedTo: 'User',
-        name: file.name,
-        description: type + ' file',
-        selected: false
-      };
-
-      this.allDocuments.push(newDoc);
+      this.documentService
+        .uploadFile(file, email, type)
+        .subscribe({
+          next: () => {
+            this.loadDocuments();
+          },
+          error: err => console.error(err)
+        });
     }
   }
+
+  ngOnInit() {
+    this.loadDocuments();
+  }
+
+  loadDocuments() {
+
+  if (!isPlatformBrowser(this.platformId)) {
+    return;
+  }
+
+    const email = localStorage.getItem("userEmail") || "";
+    console.log("Fetching documents for:", email);
+    this.documentService.getUserDocuments(email)
+      .subscribe((docs: any) => {
+        console.log("API response:", docs);
+        this.allDocuments = docs.map((d: any) => ({
+          id: d.id,
+          dateCreated: d.dateCreated,
+          assignedTo: d.userEmail,
+          name: d.fileName,
+          description: d.description,
+          selected: false
+        }));
+
+      });
+
+  }
+
+
   
   get filteredDocuments(): Document[] {
     if (!this.filterText.trim()) {
