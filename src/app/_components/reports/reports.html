@@ -1,0 +1,52 @@
+<div class="card-container">
+
+  <div class="card">
+    <h2>Create Opportunity</h2>
+
+    <!-- Name -->
+    <div class="form-group">
+      <label>Opportunity Name</label>
+      <input type="text" [(ngModel)]="form.name" placeholder="Enter name">
+    </div>
+
+    <!-- Date -->
+    <div class="form-group">
+      <label>Expected Close Date</label>
+      <input type="expectedDate" [(ngModel)]="form.expectedDate">
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea [(ngModel)]="form.description" placeholder="Enter description"></textarea>
+    </div>
+
+    <!-- Assigned To -->
+    <div class="form-group">
+      <label>Assigned To</label>
+      <input type="text" [value]="user?.email" readonly>
+    </div>
+
+    <!-- Budget -->
+    <div class="form-group">
+      <label>Budget</label>
+      <input type="number" [(ngModel)]="form.budget" placeholder="Enter amount">
+    </div>
+
+    <!-- Status -->
+    <div class="form-group">
+      <label>Status</label>
+      <select [(ngModel)]="form.status">
+        <option value="new">New</option>
+        <option value="analysis">Need Analysis</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+      </select>
+    </div>
+
+    <!-- Button -->
+    <button (click)="create('new')">Create</button>
+
+  </div>
+
+</div>

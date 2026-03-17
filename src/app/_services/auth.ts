@@ -5,7 +5,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface User {
-  id: string;
   name: string;
   email: string;
 }
