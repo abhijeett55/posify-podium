@@ -34,7 +34,7 @@ export class Register {
     }
 
 
-    this.authService.register(email, password).subscribe({
+    this.authService.register(name, email, password).subscribe({
       next: (res) => {
         console.log('Registration success', res);
         this.authService.saveUserData(res.token , res.user);

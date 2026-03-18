@@ -20,8 +20,8 @@ export class Auth {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) {}
 
-  register(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, { email, password }).pipe(
+  register(name: string, email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, { name ,email, password }).pipe(
       map((response: any) => {
         this.saveUserData(response.token, response.user);
         return response;
@@ -42,6 +42,7 @@ export class Auth {
   saveUserData(token: string, user: any): void {
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('token', token);
+        localStorage.setItem('userName', user.name)
         localStorage.setItem("userEmail", user.email);
         localStorage.setItem('user', JSON.stringify(user));
     }
@@ -52,6 +53,8 @@ export class Auth {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
     }
     this.currentUserSubject.next(null);
   }
