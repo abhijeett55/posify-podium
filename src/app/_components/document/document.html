@@ -2,14 +2,11 @@
 
   <div class="page-header">
     <h1>Documents</h1>
-    <p>Manage your documents</p>
+    <p>Manage your documents [Max Limit Size Per File <= 16MB]</p>
   </div>
 
   <hr>
-
-  <!-- Upload Buttons -->
   <div class="upload-buttons">
-    <!-- Hidden file inputs -->
     <input
       type="file"
       #pdfUpload
@@ -69,10 +66,19 @@
       <tbody>
 
         <tr *ngIf="allDocuments.length === 0">
-          <td colspan="4" class="no-results">No results.</td>
+          <td colspan="5" class="no-results">No results.</td>
         </tr>
 
         <tr *ngFor="let doc of paginatedDocuments">
+
+              <td>
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="doc.selected"
+                  (change)="onSelectionChange()"
+                />
+              </td>
+
           <td>{{doc.dateCreated}}</td>
           <td>{{doc.assignedTo}}</td>
           <td>{{doc.name}}</td>

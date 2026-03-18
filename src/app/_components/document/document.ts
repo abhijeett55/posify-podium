@@ -62,6 +62,25 @@ export class DocumentComponent {
     this.loadDocuments();
   }
 
+  // toggleAll(event: any) {
+  //   const checked = event.target.checked;
+
+  //   this.paginatedDocuments.forEach(doc => {
+  //     doc.selected = checked;
+  //   });
+  // }
+
+  // areAllVisibleSelected(): boolean {
+  //   return this.paginatedDocuments.length > 0 &&
+  //          this.paginatedDocuments.every(doc => doc.selected);
+  // }
+
+  // isIndeterminate(): boolean {
+  //   const selectedCount = this.paginatedDocuments.filter(d => d.selected).length;
+
+  //   return selectedCount > 0 && selectedCount < this.paginatedDocuments.length;
+  // }
+
   loadDocuments() {
 
   if (!isPlatformBrowser(this.platformId)) {
@@ -154,5 +173,10 @@ export class DocumentComponent {
   isIndeterminate(): boolean {
     const selectedVisible = this.paginatedDocuments.filter(doc => doc.selected).length;
     return selectedVisible > 0 && selectedVisible < this.paginatedDocuments.length;
+  }
+  
+  onSelectionChange() {
+    const selected = this.paginatedDocuments.filter(d => d.selected);
+    console.log("Selected docs:", selected);
   }
 }
