@@ -19,6 +19,9 @@ export class Register {
   registerWithGoogle() {
     console.log("Registered");
   }
+  loginWithGithub() {
+    console.log("Github Authenticated");
+  }
 
   onRegister(form: NgForm) {
     if(form.invalid) return;
