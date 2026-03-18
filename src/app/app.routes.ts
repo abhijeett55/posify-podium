@@ -5,6 +5,7 @@ import { Register } from './_components/register/register';
 import { Dashboard } from './_components/dashboard/dashboard';
 import { Layout } from './_components/layout/layout';
 import { Sales } from './_components/sales/sales';
+import { Emails } from './_components/emails/emails';
 import { Reports } from './_components/reports/reports';
 import { Profile } from './_components/profile/profile';
 import { Lead } from './_components/lead/lead';
@@ -20,7 +21,7 @@ export const routes: Routes = [
     component: Layout,
     children: [
       { path: 'dashboard', component: Dashboard},
-      { path: 'sales', component: Sales },
+      { path: 'emails', component: Emails },
       { path: 'lead', component: Lead },
       { path: 'reports', component: Reports },
       { path: 'document', component: DocumentComponent},

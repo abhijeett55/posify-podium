@@ -1,0 +1,63 @@
+<div class="email-app">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="user">Alicia Koch</div>
+
+    <ul>
+      <li class="active">Inbox <span>128</span></li>
+      <li>Drafts</li>
+      <li>Sent</li>
+      <li>Junk</li>
+      <li>Trash</li>
+      <li>Archive</li>
+    </ul>
+  </div>
+
+  <!-- Email List -->
+  <div class="list">
+
+    <div class="list-header">
+      <h2>Inbox</h2>
+      <input placeholder="Search">
+    </div>
+
+    <div 
+      class="email-card"
+      *ngFor="let mail of emails"
+      (click)="selectMail(mail)"
+      [class.active]="selectedMail?.id === mail.id"
+    >
+      <h4>{{ mail.sender }}</h4>
+      <p class="subject">{{ mail.subject }}</p>
+      <p class="preview">{{ mail.body }}</p>
+
+      <div class="tags">
+        <span *ngFor="let tag of mail.tags">{{ tag }}</span>
+      </div>
+
+      <span class="time">{{ mail.time }}</span>
+    </div>
+
+  </div>
+
+  <!-- Email Detail -->
+  <div class="detail" *ngIf="selectedMail">
+
+    <div class="detail-header">
+      <h3>{{ selectedMail.sender }}</h3>
+      <span>{{ selectedMail.time }}</span>
+    </div>
+
+    <h4>{{ selectedMail.subject }}</h4>
+    <p>{{ selectedMail.body }}</p>
+
+    <!-- Reply Box -->
+    <div class="reply-box">
+      <textarea placeholder="Reply..."></textarea>
+      <button (click)="sendReply()">Send</button>
+    </div>
+
+  </div>
+
+</div>
