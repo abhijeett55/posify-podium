@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../_services/auth';
+import { ReportService } from '../../_services/report.service';
+
 
 export interface Report {
   name: string;
@@ -20,6 +22,7 @@ export interface Report {
   templateUrl: './reports.html',
   styleUrl: './reports.css',
 })
+
 export class Reports {
 
   user: any = null;
@@ -33,20 +36,38 @@ export class Reports {
   assignedTo: ''
 };
 
-constructor(private authService: Auth) {}
+constructor(private authService: Auth,
+  private reportService: ReportService) {}
 
   ngOnInit() {
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
 
-      if (user) {
-        this.form.assignedTo = user.email;
-      }
-    });
-  }
+    if (user) {
+      this.form.assignedTo = user.email;
+    }
+  });
+}
 
-  create(status: string) {
-    this.form.status = status;
-  console.log("Create card in:", status);
-  }
+create(status: string) {
+  this.form.status = status;
+
+  this.reportService.createReport(this.form).subscribe({
+    next: (res) => {
+      console.log("Saved:", res);
+
+      this.form = {
+        name: '',
+        description: '',
+        expectedDate: '',
+        budget: '',
+        status: 'new',
+        assignedTo: this.user?.email || ''
+      };
+    },
+    error: (err) => {
+      console.error("Error saving:", err);
+    }
+  });
+}
 }

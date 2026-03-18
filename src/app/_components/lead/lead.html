@@ -1,0 +1,95 @@
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Leads</h1>
+    <p>Everything you need to know about your leads</p>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+
+    <input 
+      type="text" 
+      placeholder="Filter leads ..." 
+      [(ngModel)]="searchText"
+    >
+
+    <button class="status-btn">+ Status</button>
+
+    <button class="view-btn">⚙ View</button>
+
+    <button class="add-btn" (click)="openModal()">+</button>
+
+    <div class="modal" *ngIf="showModal">
+
+  <div class="card">
+
+    <h2>Create Lead</h2>
+
+    <input placeholder="First Name" [(ngModel)]="leadForm.firstName">
+    <input placeholder="Last Name" [(ngModel)]="leadForm.lastName">
+
+    <input placeholder="Company" [(ngModel)]="leadForm.company">
+    <input placeholder="Email" [(ngModel)]="leadForm.email">
+
+    <input placeholder="Phone" [(ngModel)]="leadForm.phone">
+    <input placeholder="Assigned To" [(ngModel)]="leadForm.assignedTo">
+
+    <select [(ngModel)]="leadForm.status">
+      <option value="New">New</option>
+      <option value="Contacted">Contacted</option>
+      <option value="Qualified">Qualified</option>
+      <option value="Closed">Closed</option>
+    </select>
+
+    <div class="actions">
+      <button (click)="createLead()">Save</button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Expected Close</th>
+          <th>Last Update</th>
+          <th>Assigned To</th>
+          <th>Company</th>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let lead of filteredLeads()">
+          <td>{{ lead.expectedClose }}</td>
+          <td>{{ lead.lastUpdate }}</td>
+          <td>{{ lead.assignedTo }}</td>
+          <td>{{ lead.company }}</td>
+          <td>{{ lead.name }}</td>
+          <td>{{ lead.email }}</td>
+          <td>{{ lead.phone }}</td>
+          <td>
+            <span class="status" [ngClass]="lead.status.toLowerCase()">
+              {{ lead.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
