@@ -1,6 +1,6 @@
 .app-header {
   display: flex;
-  align-items: center;
+  align-items: right;
   justify-content: space-between;
   height: 60px;
   margin-left: 250px;
@@ -49,11 +49,11 @@
 
 .search-container {
   display: flex;
-  align-items: center;
+  align-items: right;
   background: #f1f3f5;
   border-radius: 30px;
   padding: 6px 14px;
-  width: 280px;
+  width: 200px;
 }
 
 
