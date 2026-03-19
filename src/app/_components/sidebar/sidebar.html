@@ -1,73 +1,53 @@
 <aside class="sidebar">
   <nav class="nav">
-   <img src="assets/logo.png" alt="Podium logo" class="logo">
-  <ul>
+    <img src="assets/logo.png" alt="Podium logo" class="logo">
+    <ul>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <i class="fas fa-chart-pie icon"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="/emails" routerLinkActive="active">
+          <i class="fas fa-envelope icon"></i> Emails
+        </a>
+      </li>
+      <li>
+        <a routerLink="/projects" routerLinkActive="active">
+          <i class="fas fa-tasks icon"></i> Projects
+        </a>
+      </li>
+      <li>
+        <a routerLink="/lead" routerLinkActive="active">
+          <i class="fas fa-user-tie icon"></i> Lead
+        </a>
+      </li>
+      <li>
+        <a routerLink="/invoices" routerLinkActive="active">
+          <i class="fas fa-file-invoice icon"></i> Invoices
+        </a>
+      </li>
+      <li>
+        <a routerLink="/reports" routerLinkActive="active">
+          <i class="fas fa-chart-bar icon"></i> Reports
+        </a>
+      </li>
+      <li>
+        <a routerLink="/documents" routerLinkActive="active">
+          <i class="fas fa-file-alt icon"></i> Documents
+        </a>
+      </li>
+      <li>
+        <a routerLink="/spaces" routerLinkActive="active">
+          <i class="fas fa-folder icon"></i> Space
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-    <li>
-      <a routerLink="/dashboard" routerLinkActive="active">
-        <img src="assets/dashboard.png" class="icon">
-        Dashboard
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/emails" routerLinkActive="active">
-        <img src="assets/sales.png" class="icon">
-        Emails
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/projects" routerLinkActive="active">
-        <img src="assets/project.png" class="icon">
-        Projects
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/lead" routerLinkActive="active">
-        <img src="assets/mail.png" class="icon">
-        Lead
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/invoices" routerLinkActive="active">
-        <img src="assets/invoice.png" class="icon">
-        Invoices
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/reports" routerLinkActive="active">
-        <img src="assets/report.png" class="icon">
-        Reports
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/documents" routerLinkActive="active">
-        <img src="assets/document.png" class="icon">
-        Documents
-      </a>
-    </li>
-
-        <li>
-      <a routerLink="/spaces" routerLinkActive="active">
-        <img src="assets/document.png" class="icon">
-        Space
-      </a>
-    </li>
-
-  </ul>
-</nav>
-
-
-    <div class="user-info" *ngIf="user">
+  <div class="user-info" *ngIf="user">
     <p class="name">{{ user.name || 'User' }}</p>
     <p class="email">{{ user.email }}</p>
     <p class="build">build: 0.0.0-beta-01</p>
   </div>
-
-  
 </aside>
