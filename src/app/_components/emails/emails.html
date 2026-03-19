@@ -2,7 +2,10 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <div class="user">Alicia Koch</div>
+    <div class="user-info" *ngIf = "user">
+      <span class="user-name">{{ user.name}}</span>
+      <span class="user-email">{{ user.email}}</span>
+    </div>
 
     <ul>
       <li class="active">Inbox <span>128</span></li>

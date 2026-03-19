@@ -12,7 +12,7 @@ import { Auth, User } from '../../_services/auth';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
-  user: User | null = null ;
+  user: User | null = null;
 
   constructor(private authService: Auth,
     private router: Router,
