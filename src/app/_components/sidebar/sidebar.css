@@ -33,13 +33,11 @@
   overflow-y: auto;
 }
 
-.nav h3 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #64748b;
-  margin: 0 0 1rem 0.5rem;
-  font-weight: 600;
+.nav .logo {
+  height: 60px;          /* Adjust based on your design */
+  width: 80px;           /* Maintain aspect ratio */
+  margin: 1rem;          /* Spacing around the logo */
+  display: block;        /* Ensure proper layout */
 }
 
 .nav ul {

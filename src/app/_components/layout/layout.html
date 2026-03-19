@@ -6,8 +6,7 @@
   <div class="layout-body">
 
     <app-sidebar [class.collapsed]="!sidebarOpen"></app-sidebar>
-    
-
+    <button class="sidebar-toggle" (click)="toggleSidebar()">☰</button>
     <main class="main-content" [class.sidebar-collapsed]="!sidebarOpen">
       <router-outlet></router-outlet>
     </main>
@@ -18,4 +17,4 @@
 
 </div>
 
-<button class="sidebar-toggle" (click)="toggleSidebar()">☰</button>
+

@@ -1,67 +1,55 @@
-.app-header {
+.header {
   display: flex;
-  align-items: right;
-  justify-content: space-between;
-  height: 60px;
-  margin-left: 250px;
-  padding: 0 20px;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-.avatar{
-  width:32px;
-  height:32px;
-  border-radius:50%;
+  align-items: center;        /* vertically center all items */
+  padding: 0 20px;             /* optional horizontal padding */
+  height: 60px;                /* fixed header height (optional) */
+  background-color: #f5f5f5;   /* just for visibility */
 }
 
-.header-right {
+.search-container {
+  flex: 1;                     /* take all available space between left edge and user-section */
   display: flex;
-  align-items: center;
-  gap: 15px;
+  justify-content: center;     /* center the input horizontally within this container */
+}
+
+.search-input {
+  width: 300px;                /* adjust as needed */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;         /* align avatar and user-info vertically */
+  gap: 10px;                   /* space between avatar and info */
+  flex-shrink: 0;              /* prevent shrinking */
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .user-info {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;      /* stack email and logout button */
+  align-items: flex-end;       /* align text to the right */
 }
 
 .user-email {
   font-size: 14px;
-  color: #333;
+  font-weight: 500;
 }
 
 .logout-btn {
-  padding: 6px 12px;
-  background: #f44336;
+  margin-top: 4px;
+  padding: 4px 8px;
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 13px;
-}
-
-.logout-btn:hover {
-  background: #d32f2f;
-}
-
-
-.search-container {
-  display: flex;
-  align-items: right;
-  background: #f1f3f5;
-  border-radius: 30px;
-  padding: 6px 14px;
-  width: 200px;
-}
-
-
-.search-input {
-  border: none;
-  background: transparent;
-  padding: 6px;
-  flex: 1;
-  outline: none;
-  font-size: 14px;
 }
