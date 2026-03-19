@@ -1,19 +1,29 @@
 .email-app {
-  display: flex;
+  display: grid;
+  grid-template-columns: 220px 350px 1fr;
   height: 100vh;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
-  width: 220px;
   border-right: 1px solid #ddd;
-  padding: 10px;
+  padding: 15px;
 }
 
-.sidebar .user {
-  font-weight: bold;
+
+.user-info {
   margin-bottom: 20px;
+}
+
+.user-name {
+  font-weight: bold;
+  display: block;
+}
+
+.user-email {
+  font-size: 12px;
+  color: gray;
 }
 
 .sidebar ul {
@@ -23,8 +33,8 @@
 
 .sidebar li {
   padding: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 8px;
 }
 
 .sidebar li.active {
@@ -32,23 +42,24 @@
   color: white;
 }
 
-/* Email List */
+/* LIST */
 .list {
-  width: 350px;
   border-right: 1px solid #ddd;
   overflow-y: auto;
 }
 
 .list-header {
   padding: 10px;
+  border-bottom: 1px solid #eee;
 }
 
 .list-header input {
   width: 100%;
   padding: 8px;
+  margin-top: 8px;
 }
 
-/* Email Card */
+/* EMAIL CARD */
 .email-card {
   padding: 12px;
   border-bottom: 1px solid #eee;
@@ -59,43 +70,62 @@
   background: #f3f3f3;
 }
 
-.email-card .subject {
+.subject {
   font-weight: bold;
 }
 
-.email-card .preview {
+.preview {
   font-size: 12px;
   color: gray;
 }
 
 .tags span {
   background: #eee;
-  padding: 4px 8px;
+  padding: 3px 8px;
   margin-right: 5px;
-  border-radius: 12px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+/* MAILBOX */
+.mailbox {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* HEADER */
+.mailbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: #e6f0ff;
+  padding: 5px 10px;
+  border-radius: 10px;
   font-size: 12px;
 }
 
-/* Detail View */
-.detail {
-  flex: 1;
-  padding: 20px;
+/* DETAIL */
+.detail-subject {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
 }
 
-.detail textarea {
-  width: 100%;
-  height: 80px;
-  margin-top: 20px;
+.detail-meta {
+  font-size: 13px;
+  color: gray;
+  margin: 10px 0;
 }
 
-.detail button {
-  margin-top: 10px;
-  padding: 10px;
-  background: #6c3ef4;
-  color: white;
-  border: none;
+.detail-body {
+  margin-top: 15px;
+  line-height: 1.5;
 }
 
+/* REPLY */
 .reply-box {
   margin-top: 20px;
   display: flex;
@@ -104,11 +134,16 @@
 
 .reply-box textarea {
   padding: 10px;
-  height: 80px;
   border-radius: 6px;
+  height: 80px;
 }
 
 .reply-box button {
   margin-top: 10px;
   align-self: flex-end;
+  padding: 10px 15px;
+  border: none;
+  background: #6c3ef4;
+  color: white;
+  border-radius: 6px;
 }
