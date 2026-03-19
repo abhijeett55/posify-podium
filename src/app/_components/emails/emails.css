@@ -11,6 +11,35 @@
   padding: 15px;
 }
 
+.list-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;                       /* remove default margins */
+}
+
+.list-header input {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 40px;              /* pill shape */
+  font-size: 0.9rem;
+  width: 220px;                     /* fixed width, or use max-width */
+  background-color: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.list-header input:focus {
+  outline: none;
+  border-color: #6b8fc6;
+  box-shadow: 0 0 0 3px rgba(107, 143, 198, 0.15);
+}
+
+.list-header input::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+
 
 .user-info {
   margin-bottom: 20px;
