@@ -13,6 +13,8 @@ import { Auth, User } from '../../_services/auth';
 })
 export class Sidebar {
   user: User | null = null;
+  
+
 
   constructor(private authService: Auth,
     private router: Router,
@@ -38,6 +40,8 @@ export class Sidebar {
       
     }
   }
+
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

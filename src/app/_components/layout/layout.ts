@@ -13,4 +13,10 @@ import { Sidebar } from '../sidebar/sidebar';
 })
 export class Layout {
 
+  sidebarOpen = true;
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
 }

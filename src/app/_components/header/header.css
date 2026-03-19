@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  margin-left: 250px;
   padding: 0 20px;
   background: white;
   border-bottom: 1px solid #e0e0e0;
@@ -14,16 +15,10 @@
   border-radius:50%;
 }
 
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
 .header-right {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .user-info {
@@ -51,12 +46,6 @@
   background: #d32f2f;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  margin-right: 25px;
-  color: #333;
-}
 
 .search-container {
   display: flex;
@@ -75,11 +64,4 @@
   flex: 1;
   outline: none;
   font-size: 14px;
-}
-
-.search-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
 }

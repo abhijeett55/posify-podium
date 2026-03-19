@@ -1,19 +1,14 @@
-<header class="app-header">
-  <div class="header-left">
-    <div class="logo">Podium</div>
-    <div class="search-container">
-      <input type="text" placeholder="Search..." class="search-input">
-      <button class="search-btn">
-        <img src="assets/avatar2.png" class="avatar">
-      </button>
-    </div>
+<div class="header-right">
+  <div class="search-container">
+    <input type="text" placeholder="Search..." class="search-input">
   </div>
 
-  <div class="header-right">
+  <div class="user-section">
     <img src="assets/avatar.png" class="avatar">
+
     <div class="user-info" *ngIf="user">
       <span class="user-email">{{ user.email }}</span>
       <button class="logout-btn" (click)="logout()">Logout</button>
     </div>
   </div>
-</header>
+</div>
