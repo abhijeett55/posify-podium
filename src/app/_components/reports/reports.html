@@ -10,9 +10,15 @@
     </div>
 
     <!-- Date -->
+
+    <div class="form-group">
+      <label>Current Date</label>
+      <input type="date" [(ngModel)]="form.currentDate" class = 'date-input'>
+    </div>
+
     <div class="form-group">
       <label>Expected Close Date</label>
-      <input type="expectedDate" [(ngModel)]="form.expectedDate">
+      <input type="date" [(ngModel)]="form.expectedDate" class = 'date-input'>
     </div>
 
     <!-- Description -->

@@ -9,6 +9,7 @@ import { Emails } from './_components/emails/emails';
 import { Reports } from './_components/reports/reports';
 import { Profile } from './_components/profile/profile';
 import { Lead } from './_components/lead/lead';
+import { Space } from './_components/space/space';
 import { DocumentComponent } from './_components/document/document';
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
       { path: 'emails', component: Emails },
       { path: 'lead', component: Lead },
       { path: 'reports', component: Reports },
+      { path: 'space', component: Space },
       { path: 'document', component: DocumentComponent},
       { path: 'profile', component: Profile }
     ]

@@ -8,6 +8,7 @@ import { ReportService } from '../../_services/report.service';
 export interface Report {
   name: string;
   description: string;
+  currentDate: string;
   expectedDate: string;
   budget: string;
   status: string;
@@ -30,6 +31,7 @@ export class Reports {
   form: Report = {
   name: '',
   description: '',
+  currentDate: ' ',
   expectedDate: '',
   budget: '',
   status: 'new',
@@ -59,6 +61,7 @@ create(status: string) {
       this.form = {
         name: '',
         description: '',
+        currentDate: '',
         expectedDate: '',
         budget: '',
         status: 'new',

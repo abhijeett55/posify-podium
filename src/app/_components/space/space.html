@@ -1,1 +1,37 @@
-<p>space works!</p>
+<div class="modal-overlay">
+  <div class="modal">
+
+    <h2>Create space</h2>
+
+    <!-- Space Name -->
+    <label>Space name</label>
+    <input
+      type="text"
+      [(ngModel)]="spaceName"
+      placeholder="Enter space name"
+    />
+
+    <!-- Space Key -->
+    <label>Space key</label>
+    <input
+      type="text"
+      [(ngModel)]="spaceKey"
+      placeholder="ABC"
+    />
+
+    <!-- Type Dropdown -->
+    <label>Type</label>
+    <select [(ngModel)]="type">
+      <option *ngFor="let t of types" [value]="t.value">
+        {{ t.label }}
+      </option>
+    </select>
+
+    <!-- Buttons -->
+    <div class="actions">
+      <button class="cancel">Cancel</button>
+      <button class="create" (click)="createSpace()">Create</button>
+    </div>
+
+  </div>
+</div>
