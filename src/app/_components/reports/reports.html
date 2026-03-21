@@ -24,7 +24,7 @@
     <!-- Description -->
     <div class="form-group">
       <label>Description</label>
-      <textarea [(ngModel)]="form.description" placeholder="Enter description"></textarea>
+      <textarea [(ngModel)]="form.description" placeholder="Enter description" class = 'desc'></textarea>
     </div>
 
     <!-- Assigned To -->
@@ -48,6 +48,11 @@
         <option value="won">Won</option>
         <option value="lost">Lost</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label>Feedback</label>
+      <textarea [(ngModel)]="form.feedback" placeholder="Enter Feedback" class = "feed"></textarea>
     </div>
 
     <!-- Button -->

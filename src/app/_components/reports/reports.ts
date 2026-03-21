@@ -13,6 +13,7 @@ export interface Report {
   budget: string;
   status: string;
   assignedTo: string;
+  feedback: string;
 }
 
 
@@ -35,7 +36,8 @@ export class Reports {
   expectedDate: '',
   budget: '',
   status: 'new',
-  assignedTo: ''
+  assignedTo: '',
+  feedback: ''
 };
 
 constructor(private authService: Auth,
@@ -65,7 +67,8 @@ create(status: string) {
         expectedDate: '',
         budget: '',
         status: 'new',
-        assignedTo: this.user?.email || ''
+        assignedTo: this.user?.email || '',
+        feedback: ''
       };
     },
     error: (err) => {

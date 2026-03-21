@@ -41,7 +41,7 @@ input, textarea, select {
   font-size: 14px;
 }
 
-textarea {
+desc {
   resize: none;
   height: 80px;
 }
@@ -55,6 +55,11 @@ button {
   color: white;
   font-size: 16px;
   cursor: pointer;
+}
+
+feed {
+  resize: none;
+  height: 40px;
 }
 
 button:hover {
