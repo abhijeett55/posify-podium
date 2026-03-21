@@ -27,6 +27,7 @@ export class Lead {
   showModal = false;
   
   leadForm: any = {
+    expectedDate: '',
     firstName: '',
     lastName: '',
     company: '',
@@ -34,6 +35,7 @@ export class Lead {
     phone: '',
     assignedTo: ''
   };
+  
   leads: LeadModal[] = [];
 
 
@@ -58,7 +60,7 @@ export class Lead {
   this.http.get<any[]>('http://localhost:8080/api/leads')
     .subscribe(data => {
       this.leads = data.map(l => ({
-        expectedClose: '',
+        expectedClose: l.expectedDate,
         lastUpdate: new Date().toISOString(),
         assignedTo: l.assignedTo,
         company: l.company,
@@ -78,6 +80,7 @@ createLead() {
 
         // reset form
         this.leadForm = {
+          expectedDate: '',
           firstName: '',
           lastName: '',
           company: '',
