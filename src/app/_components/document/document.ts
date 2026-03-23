@@ -62,25 +62,6 @@ export class DocumentComponent {
     this.loadDocuments();
   }
 
-  // toggleAll(event: any) {
-  //   const checked = event.target.checked;
-
-  //   this.paginatedDocuments.forEach(doc => {
-  //     doc.selected = checked;
-  //   });
-  // }
-
-  // areAllVisibleSelected(): boolean {
-  //   return this.paginatedDocuments.length > 0 &&
-  //          this.paginatedDocuments.every(doc => doc.selected);
-  // }
-
-  // isIndeterminate(): boolean {
-  //   const selectedCount = this.paginatedDocuments.filter(d => d.selected).length;
-
-  //   return selectedCount > 0 && selectedCount < this.paginatedDocuments.length;
-  // }
-
   loadDocuments() {
 
   if (!isPlatformBrowser(this.platformId)) {
@@ -91,7 +72,6 @@ export class DocumentComponent {
     console.log("Fetching documents for:", email);
     this.documentService.getUserDocuments(email)
       .subscribe((docs: any) => {
-        console.log("API response:", docs);
         this.allDocuments = docs.map((d: any) => ({
           id: d.id,
           dateCreated: d.dateCreated,

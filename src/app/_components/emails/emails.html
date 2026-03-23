@@ -3,7 +3,7 @@
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="user-info" *ngIf="user">
-      <span class="user-name">{{ user.name }}</span>
+      <h2 class="user-name">{{ user.name }}</h2>
       <span class="user-email">{{ user.email }}</span>
     </div>
 
@@ -83,6 +83,10 @@
         (input)="onSearch($event)"
         [value]="searchTerm"
       >
+      <div class="reply-box">
+      <textarea #replyText placeholder="Reply..."></textarea>
+      <button (click)="sendReply(replyText.value)">Send</button>
+    </div>
     </div>
 
     <div 
@@ -129,12 +133,7 @@
         <p>Select an email to view</p>
       </div>
     </ng-template>
-
-    <!-- Reply -->
-    <div class="reply-box">
-      <textarea #replyText placeholder="Reply..."></textarea>
-      <button (click)="sendReply(replyText.value)">Send</button>
-    </div>
+    
   </div>
 
 </div>

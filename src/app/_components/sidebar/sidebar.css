@@ -91,6 +91,7 @@
 
 /* USER INFO SECTION */
 .user-info {
+  height:35px;
   border-top: 1px solid #dce3ec;
   padding: 1.25rem 1.5rem;
   background-color: #ffffff;

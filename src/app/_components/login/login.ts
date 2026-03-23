@@ -21,7 +21,7 @@ export class Login {
     const { email , password} = form.value;
     this.authService.login(email, password).subscribe({
       next: (res) => {
-        console.log('Login success', res);
+        console.log('Login success');
         this.authService.saveUserData(res.token, res.user);
         this.router.navigate(['/dashboard']);
       },
