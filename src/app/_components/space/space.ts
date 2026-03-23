@@ -10,16 +10,25 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './space.css',
 })
 export class Space {
+  
+  showModal: boolean = false;
   spaceName = '';
   spaceKey = '';
   type = 'software';
-
-    types = [
-    { label: 'Jira - software spaces', value: 'software' },
-    { label: 'Jira - business spaces', value: 'business' },
-    { label: 'Jira Service Management', value: 'service' },
+  types = [
+    { label: 'Software spaces', value: 'software' },
+    { label: 'Business spaces', value: 'business' },
+    { label: 'Service Management', value: 'service' },
     { label: 'Product Discovery', value: 'product' }
   ];
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
 
     createSpace() {
     const payload = {
@@ -27,6 +36,7 @@ export class Space {
       key: this.spaceKey,
       type: this.type
     };
-
+    console.log('Done');
+    this.closeModal();
   }
 }

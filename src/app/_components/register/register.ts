@@ -4,7 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule} from '@angular/common';
 import { Auth } from '../../_services/auth';
 import { Router } from '@angular/router';
-
+import { Auth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +19,9 @@ export class Register {
   registerWithGoogle() {
     console.log("Registered");
   }
+
+
+  
   loginWithGithub() {
     console.log("Github Authenticated");
   }
