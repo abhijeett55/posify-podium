@@ -1,9 +1,17 @@
 <div class="header">
-  <div class="search-container">
+
+  <!-- LEFT (optional logo/title if needed) -->
+  <div class="header-left">
+    <span class="logo-text">Podium</span>
+  </div>
+
+  <!-- CENTER SEARCH -->
+  <div class="header-center">
     <input type="text" placeholder="Search..." class="search-input">
   </div>
 
-  <div class="user-section">
+  <!-- RIGHT USER -->
+  <div class="header-right">
     <img src="assets/avatar.png" class="avatar">
 
     <div class="user-info" *ngIf="user">
@@ -11,4 +19,5 @@
       <button class="logout-btn" (click)="logout()">Logout</button>
     </div>
   </div>
+
 </div>

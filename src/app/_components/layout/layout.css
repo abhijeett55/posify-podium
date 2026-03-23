@@ -1,55 +1,69 @@
-/* Full application layout */
-.app-layout{
+/* ROOT LAYOUT */
+.app-layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HEADER + FOOTER FIXED SIZE (optional tweak if needed) */
+app-header {
+  height: 60px;
+  flex-shrink: 0;
+}
+
+app-footer {
+  height: 50px;
+  flex-shrink: 0;
+}
+
+/* BODY LAYOUT */
+.layout-body {
+  display: flex;
+  flex: 1;
   overflow: hidden;
 }
 
-/* header */
-app-header{
-  height:60px;
-  flex-shrink:0;
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: white;
+  transition: width 0.3s ease;
+  overflow: hidden;
 }
 
-/* body area */
-.layout-body{
-  display:flex;
-  flex:1;
-  overflow:hidden;
+/* Sidebar content inside */
+.sidebar app-sidebar {
+  display: block;
+  height: 100%;
 }
 
-/* sidebar */
-
-app-sidebar {
-  width: 260px;
-  flex-shrink: 0;
-  background: #f8fafd;
-  border-right: 1px solid #e2e8f0;
-  overflow-y: auto;
-  transition: width 0.25s ease;
-}
-
-/* dashboard/content */
+/* MAIN CONTENT */
 .main-content {
   flex: 1;
-  padding: 2rem;
   background: #f8fafc;
+  padding: 20px;
   overflow-y: auto;
-  transition: margin-left 0.25s ease;
-  margin-left: 0; /* default when sidebar is hidden? Actually we control via flex, not margin */
 }
 
-/* If you want to shift content when sidebar collapses (using margin) */
-.main-content.sidebar-collapsed {
-  margin-left: -260px; /* only if sidebar uses position absolute */
+/* SCROLLBAR (optional clean look) */
+.main-content::-webkit-scrollbar {
+  width: 6px;
 }
 
+.main-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
 
-/* footer */
-app-footer{
-  height:50px;
-  flex-shrink:0;
-  background: #fff;
-  border-top: 1px solid #e2e8f0;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
 }

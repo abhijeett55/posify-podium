@@ -1,13 +1,14 @@
 <div class="app-layout">
 
-<app-header></app-header>
-  
+  <app-header></app-header>
 
   <div class="layout-body">
 
-    <app-sidebar [class.collapsed]="!sidebarOpen"></app-sidebar>
-    <button class="sidebar-toggle" (click)="toggleSidebar()">☰</button>
-    <main class="main-content" [class.sidebar-collapsed]="!sidebarOpen">
+    <aside class="sidebar">
+      <app-sidebar></app-sidebar>
+    </aside>
+
+    <main class="main-content">
       <router-outlet></router-outlet>
     </main>
 
@@ -16,5 +17,3 @@
   <app-footer></app-footer>
 
 </div>
-
-
