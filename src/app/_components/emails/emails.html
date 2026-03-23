@@ -132,8 +132,8 @@
 
     <!-- Reply -->
     <div class="reply-box">
-      <textarea placeholder="Reply..."></textarea>
-      <button (click)="sendReply()">Send</button>
+      <textarea #replyText placeholder="Reply..."></textarea>
+      <button (click)="sendReply(replyText.value)">Send</button>
     </div>
   </div>
 

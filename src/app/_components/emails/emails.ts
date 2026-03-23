@@ -3,9 +3,11 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { PLATFORM_ID } from '@angular/core';
 import { Auth, User } from '../../_services/auth';
+import { EmailService } from '../../_services/email-service';
+
 
 export interface EmailModel {
-  id: string;
+  id?: string | number;
   sender: string;
   subject: string;
   body: string;
@@ -31,6 +33,7 @@ export class Emails {
 
   constructor(private authService: Auth,
     private router: Router,
+    private emailService: EmailService,
     @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
@@ -52,7 +55,9 @@ export class Emails {
         };
       }
     }
-    this.loadSampleEmails();
+
+
+    this.loadEmailsFromServer();
   }
 
   selectMail(mail: EmailModel) {
@@ -62,64 +67,41 @@ export class Emails {
 
   selectFolder(folder: string) {
     this.currentFolder = folder;
-    this.selectedMail = null; // Clear selection when changing folder
+    this.selectedMail = null;
     this.filterEmailsByFolder();
   }
   
-  sendReply() {
-    console.log("Reply sent", this.selectedMail);
-  }
+  sendReply(replyText: string) {
+    if (!this.selectedMail || !replyText.trim()) return;
 
-    loadSampleEmails() {
-    this.allEmails = [
-      {
-        id: '1',
-        folder: 'inbox',
-        sender: 'john.doe@example.com',
-        subject: 'Meeting tomorrow',
-        body: 'Hi, let\'s discuss the project tomorrow at 10 AM.',
-        time: '10:30 AM',
-        tags: ['work', 'meeting']
+    if (!this.user?.email) {
+      console.error('User not logged in. Cannot send reply.');
+      return;
+    }
+
+
+    const sentEmail: EmailModel = {
+      id: undefined,
+      sender: this.user?.email,
+      subject: `Re: ${this.selectedMail.subject}`,
+      body: replyText,
+      time: new Date().toISOString(),
+      tags: ['sent'],
+      folder: 'sent'
+    };
+
+    this.emailService.createEmail(sentEmail).subscribe({
+      next: (newEmail) => {
+        // Add to allEmails and refresh list
+        this.allEmails.push(newEmail);
+        this.filterEmailsByFolder();
+        // Clear reply textarea
+        const textarea = document.querySelector('.reply-box textarea') as HTMLTextAreaElement;
+        if (textarea) textarea.value = '';
+        console.log('Reply sent successfully');
       },
-      {
-        id: '2',
-        folder: 'inbox',
-        sender: 'newsletter@tech.com',
-        subject: 'Weekly Tech Digest',
-        body: 'Top stories: Angular 18 released, ...',
-        time: '9:15 AM',
-        tags: ['tech']
-      },
-      {
-        id: '3',
-        folder: 'sent',
-        sender: 'me',
-        subject: 'Re: Project update',
-        body: 'I\'ve completed the task, please review.',
-        time: 'Yesterday',
-        tags: ['work']
-      },
-      {
-        id: '4',
-        folder: 'draft',
-        sender: 'me',
-        subject: 'Draft: Proposal',
-        body: 'This is a draft email about the proposal...',
-        time: 'Draft saved 2 days ago',
-        tags: ['draft']
-      },
-      {
-        id: '5',
-        folder: 'social',
-        sender: 'facebook@notifications.com',
-        subject: 'Someone commented on your post',
-        body: 'John commented: "Great photo!"',
-        time: '3:45 PM',
-        tags: ['social']
-      }
-      // Add more emails with different folders as needed
-    ];
-    this.filterEmailsByFolder();
+      error: (err) => console.error('Failed to send reply', err)
+    });
   }
 
 
@@ -133,6 +115,19 @@ export class Emails {
       );
     }
     this.filteredEmails = filtered;
+  }
+
+  loadEmailsFromServer() {
+    this.emailService.getAllEmails().subscribe({
+      next: (emails) => {
+        this.allEmails = emails;
+        this.filterEmailsByFolder();
+      },
+      error: (err) => {
+        console.error('Failed to load emails', err);
+        
+      }
+    });
   }
 
   onSearch(event: Event) {
