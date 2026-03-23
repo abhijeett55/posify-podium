@@ -1,76 +1,93 @@
 <div class="email-app">
 
-  <!-- 1️⃣ SIDEBAR -->
+  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="user-info" *ngIf="user">
       <span class="user-name">{{ user.name }}</span>
       <span class="user-email">{{ user.email }}</span>
     </div>
-    
 
     <ul class="list-group">
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-inbox me-2"></i> Inbox
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'inbox'"
+        (click)="selectFolder('inbox')"
+      >
+        <i class="fas fa-inbox me-2"></i> Inbox
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-file me-2"></i> Draft
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'draft'"
+        (click)="selectFolder('draft')"
+      >
+        <i class="fas fa-file me-2"></i> Draft
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-paper-plane me-2"></i> Send
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'sent'"
+        (click)="selectFolder('sent')"
+      >
+        <i class="fas fa-paper-plane me-2"></i> Sent
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-inbox me-2"></i> Trash
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'trash'"
+        (click)="selectFolder('trash')"
+      >
+        <i class="fas fa-trash-alt me-2"></i> Trash
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-exclamation-triangle me-2"></i> Junk
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'junk'"
+        (click)="selectFolder('junk')"
+      >
+        <i class="fas fa-exclamation-triangle me-2"></i> Junk
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-archive me-2"></i> Archieve
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'archive'"
+        (click)="selectFolder('archive')"
+      >
+        <i class="fas fa-archive me-2"></i> Archive
       </li>
-
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-users me-2"></i> Social
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'social'"
+        (click)="selectFolder('social')"
+      >
+        <i class="fas fa-users me-2"></i> Social
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-bell me-2"></i> Updates
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'updates'"
+        (click)="selectFolder('updates')"
+      >
+        <i class="fas fa-bell me-2"></i> Updates
       </li>
-      <li class="list-group-item">
-        <a href="#" class="text-decoration-none d-block">
-          <i class="fas fa-comments me-2"></i> Forum
-        </a>
+      <li 
+        class="list-group-item" 
+        [class.active]="currentFolder === 'forum'"
+        (click)="selectFolder('forum')"
+      >
+        <i class="fas fa-comments me-2"></i> Forum
       </li>
     </ul>
-
-
   </div>
 
-  <!-- 2️⃣ EMAIL LIST -->
+  <!-- EMAIL LIST -->
   <div class="list">
-
     <div class="list-header">
-      <h2>Inbox</h2>
-      <input placeholder="Search">
+      <h2>{{ getFolderDisplayName(currentFolder) }}</h2>
+      <input 
+        placeholder="Search" 
+        (input)="onSearch($event)"
+        [value]="searchTerm"
+      >
     </div>
 
     <div 
       class="email-card"
-      *ngFor="let mail of emails"
+      *ngFor="let mail of filteredEmails"
       (click)="selectMail(mail)"
       [class.active]="selectedMail?.id === mail.id"
     >
@@ -84,44 +101,40 @@
 
       <span class="time">{{ mail.time }}</span>
     </div>
-
   </div>
 
-  <!-- 3️⃣ MAILBOX / DETAIL -->
-  <div class="mailbox" >
+  <!-- MAILBOX / DETAIL -->
+  <div class="mailbox">
     <ng-container *ngIf="selectedMail; else emptyState">
-    <div class="mailbox-header" >
-      <h3>📄 ALL MAIL</h3>
-      <span class="badge">{{ selectedMail.sender }}</span>
-    </div>
-
-    <div class="email-detail">
-      <div class="detail-subject">{{ selectedMail.subject }}</div>
-
-      <div class="detail-meta">
-        <div><strong>From:</strong> {{ selectedMail.sender }}</div>
-        <div><strong>Date:</strong> {{ selectedMail.time }}</div>
+      <div class="mailbox-header">
+        <h3>📄 ALL MAIL</h3>
+        <span class="badge">{{ selectedMail.sender }}</span>
       </div>
 
-      <div class="detail-body">
-        {{ selectedMail.body }}
+      <div class="email-detail">
+        <div class="detail-subject">{{ selectedMail.subject }}</div>
+
+        <div class="detail-meta">
+          <div><strong>From:</strong> {{ selectedMail.sender }}</div>
+          <div><strong>Date:</strong> {{ selectedMail.time }}</div>
+        </div>
+
+        <div class="detail-body">
+          {{ selectedMail.body }}
+        </div>
       </div>
-    </div>
     </ng-container>
     <ng-template #emptyState>
-    <div class="empty-mailbox">
-      <p>Select an email to view</p>
-    </div>
-  </ng-template>
+      <div class="empty-mailbox">
+        <p>Select an email to view</p>
+      </div>
+    </ng-template>
 
     <!-- Reply -->
     <div class="reply-box">
       <textarea placeholder="Reply..."></textarea>
       <button (click)="sendReply()">Send</button>
     </div>
-
   </div>
-
-
 
 </div>

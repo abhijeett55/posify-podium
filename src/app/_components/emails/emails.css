@@ -11,6 +11,12 @@
   padding: 15px;
 }
 
+.list-group-item.active {
+  background-color: #e9ecef;
+  border-left: 3px solid #007bff;
+  font-weight: 500;
+}
+
 .list-header h2 {
   font-size: 1.2rem;
   font-weight: 600;
