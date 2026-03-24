@@ -1,20 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SpaceService } from '../../_services/space.service';
+
+export interface SpaceModal {
+  id?: string;
+  name: string;
+  key: string;
+  type: string;
+}
 
 @Component({
   selector: 'app-space',
   standalone: true,
-  imports: [ CommonModule, FormsModule ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './space.html',
   styleUrl: './space.css',
 })
-export class Space {
-  spaces: any[] = [];
+export class Space implements OnInit {
+
+  spaces: SpaceModal[] = [];
+
   showModal: boolean = false;
   spaceName = '';
   spaceKey = '';
   type = 'software';
+
   types = [
     { label: 'Software spaces', value: 'software' },
     { label: 'Business spaces', value: 'business' },
@@ -22,14 +33,21 @@ export class Space {
     { label: 'Product Discovery', value: 'product' }
   ];
 
+  constructor(private spaceService: SpaceService) {}
+
+  
   ngOnInit() {
-    const data = localStorage.getItem('spaces');
-    if (data) {
-      this.spaces = JSON.parse(data);
-    }
+    this.loadSpaces();
   }
 
+  
+  loadSpaces() {
+    this.spaceService.getSpaces().subscribe(data => {
+      this.spaces = data;
+    });
+  }
 
+  
   openModal() {
     this.showModal = true;
   }
@@ -38,33 +56,36 @@ export class Space {
     this.showModal = false;
   }
 
-  getImage(type: string): string {
-    switch (type) {
-      case 'software': return 'assets/software.jpg';
-      case 'business': return 'assets/business.jpg';
-      case 'service': return 'assets/service.jpg';
-      case 'product': return 'assets/product.jpg';
-      default: return 'assets/default.jpg';
-    }
-  }
-
+  
   createSpace() {
     if (!this.spaceName || !this.spaceKey) {
       alert('Please fill all fields');
       return;
     }
-    const newSpace = {
+
+    const payload = {
       name: this.spaceName,
       key: this.spaceKey,
       type: this.type
     };
 
-    this.spaces.push(newSpace);
-    this.spaceName = '';
-    this.spaceKey = '';
-    this.type = 'software';
-    
+    this.spaceService.createSpace(payload).subscribe(() => {
+      this.loadSpaces();
 
-    this.closeModal();
+      this.spaceName = '';
+      this.spaceKey = '';
+      this.type = 'software';
+
+      this.closeModal();
+    });
+  }
+
+  
+  deleteSpace(id: string, event: Event) {
+    event.stopPropagation();
+
+    this.spaceService.deleteSpace(id).subscribe(() => {
+      this.loadSpaces();
+    });
   }
 }

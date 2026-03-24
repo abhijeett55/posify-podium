@@ -19,56 +19,67 @@
 
   <!-- GRID -->
   <div class="space-grid">
+
     <div 
       class="space-card"
       *ngFor="let s of spaces"
     >
-      <!-- <img [src]="getImage(s.type)" /> -->
+
+      <!-- DELETE BUTTON -->
+      <button 
+        class="delete-btn"
+        (click)="deleteSpace(s.id!, $event)">
+        ✕
+      </button>
+
+      <!-- CARD -->
       <section class="card" [ngClass]="s.type">
 
-  <!-- ICON -->
-  <svg
-    viewBox="0 0 16 16"
-    class="card-icon"
-    fill="currentColor"
-    height="40"
-    width="40"
-  >
-    <path
-      d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"
-    />
-  </svg>
+        <!-- ICON -->
+        <svg
+          viewBox="0 0 16 16"
+          class="card-icon"
+          fill="currentColor"
+          height="40"
+          width="40"
+        >
+          <path
+            d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"
+          />
+        </svg>
 
-  <!-- CONTENT -->
-  <div class="card__content">
-    <p class="card__title">{{ s.name }}</p>
-    <p class="card__description">
-      {{ s.type | titlecase }} Space • Key: {{ s.key }}
-    </p>
-  </div>
+        <!-- CONTENT -->
+        <div class="card__content">
+          <p class="card__title">{{ s.name }}</p>
+          <p class="card__description">
+            {{ s.type | titlecase }} • Key: {{ s.key }}
+          </p>
+        </div>
 
-</section>
+      </section>
 
-
-      <div class="space-info">
-        <h3>{{ s.name }}</h3>
-        <p class="type">{{ s.type | titlecase }}</p>
-        <span class="key">{{ s.key }}</span>
-      </div>
     </div>
+
   </div>
 
   <!-- MODAL -->
   <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+
     <div class="modal" (click)="$event.stopPropagation()">
 
       <h2>Create space</h2>
 
       <label>Space name</label>
-      <input [(ngModel)]="spaceName" placeholder="Enter space name" />
+      <input 
+        [(ngModel)]="spaceName"
+        placeholder="Enter space name"
+      />
 
       <label>Space key</label>
-      <input [(ngModel)]="spaceKey" placeholder="ABC" />
+      <input 
+        [(ngModel)]="spaceKey"
+        placeholder="ABC"
+      />
 
       <label>Type</label>
       <select [(ngModel)]="type">
@@ -83,6 +94,7 @@
       </div>
 
     </div>
+
   </div>
 
 </div>
