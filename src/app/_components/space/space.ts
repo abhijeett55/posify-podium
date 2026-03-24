@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './space.css',
 })
 export class Space {
-  
+  spaces: any[] = [];
   showModal: boolean = false;
   spaceName = '';
   spaceKey = '';
@@ -22,6 +22,14 @@ export class Space {
     { label: 'Product Discovery', value: 'product' }
   ];
 
+  ngOnInit() {
+    const data = localStorage.getItem('spaces');
+    if (data) {
+      this.spaces = JSON.parse(data);
+    }
+  }
+
+
   openModal() {
     this.showModal = true;
   }
@@ -30,13 +38,33 @@ export class Space {
     this.showModal = false;
   }
 
-    createSpace() {
-    const payload = {
+  getImage(type: string): string {
+    switch (type) {
+      case 'software': return 'assets/software.jpg';
+      case 'business': return 'assets/business.jpg';
+      case 'service': return 'assets/service.jpg';
+      case 'product': return 'assets/product.jpg';
+      default: return 'assets/default.jpg';
+    }
+  }
+
+  createSpace() {
+    if (!this.spaceName || !this.spaceKey) {
+      alert('Please fill all fields');
+      return;
+    }
+    const newSpace = {
       name: this.spaceName,
       key: this.spaceKey,
       type: this.type
     };
-    console.log('Done');
+
+    this.spaces.push(newSpace);
+    this.spaceName = '';
+    this.spaceKey = '';
+    this.type = 'software';
+    
+
     this.closeModal();
   }
 }
