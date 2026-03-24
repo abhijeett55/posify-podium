@@ -4,7 +4,6 @@ import { Login } from './_components/login/login';
 import { Register } from './_components/register/register';
 import { Dashboard } from './_components/dashboard/dashboard';
 import { Layout } from './_components/layout/layout';
-import { Sales } from './_components/sales/sales';
 import { Emails } from './_components/emails/emails';
 import { Reports } from './_components/reports/reports';
 import { Profile } from './_components/profile/profile';
