@@ -1,23 +1,23 @@
-/* ROOT LAYOUT */
+/* ROOT */
 .app-layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-/* HEADER + FOOTER FIXED SIZE (optional tweak if needed) */
+/* HEADER */
 app-header {
   height: 60px;
   flex-shrink: 0;
 }
 
+/* FOOTER */
 app-footer {
   height: 50px;
   flex-shrink: 0;
 }
 
-/* BODY LAYOUT */
+/* BODY */
 .layout-body {
   display: flex;
   flex: 1;
@@ -27,43 +27,15 @@ app-footer {
 /* SIDEBAR */
 .sidebar {
   width: 240px;
-  background: #1e293b;
-  color: white;
-  transition: width 0.3s ease;
-  overflow: hidden;
-}
-
-/* Sidebar content inside */
-.sidebar app-sidebar {
-  display: block;
-  height: 100%;
+  background: #f1f5f9;
+  border-right: 1px solid #e5e7eb;
+  flex-shrink: 0;
 }
 
 /* MAIN CONTENT */
 .main-content {
   flex: 1;
-  background: #f8fafc;
   padding: 20px;
   overflow-y: auto;
-}
-
-/* SCROLLBAR (optional clean look) */
-.main-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.main-content::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 70px;
-  }
-
-  .main-content {
-    padding: 15px;
-  }
+  background: #ffffff;
 }

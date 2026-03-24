@@ -92,10 +92,8 @@ export class Emails {
 
     this.emailService.createEmail(sentEmail).subscribe({
       next: (newEmail) => {
-        // Add to allEmails and refresh list
         this.allEmails.push(newEmail);
         this.filterEmailsByFolder();
-        // Clear reply textarea
         const textarea = document.querySelector('.reply-box textarea') as HTMLTextAreaElement;
         if (textarea) textarea.value = '';
         console.log('Reply sent successfully');

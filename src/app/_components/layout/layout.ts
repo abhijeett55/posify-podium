@@ -12,5 +12,4 @@ import { Sidebar } from '../sidebar/sidebar';
   styleUrl: './layout.css',
 })
 export class Layout {
-
 }

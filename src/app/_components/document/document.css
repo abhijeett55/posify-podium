@@ -11,7 +11,6 @@
   color:#6b7280;
 }
 
-/* upload buttons */
 
 .upload-buttons{
   margin-top:20px;
@@ -29,7 +28,6 @@
   font-weight:500;
 }
 
-/* filter */
 
 .filter-box{
   margin:20px 0;
@@ -42,7 +40,6 @@
   border-radius:6px;
 }
 
-/* table */
 
 .table-container{
   background:white;
@@ -72,7 +69,6 @@ th{
   padding:30px;
 }
 
-/* pagination */
 
 .pagination{
   display:flex;

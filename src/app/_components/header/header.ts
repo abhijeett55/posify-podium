@@ -19,6 +19,8 @@ export class Header {
     this.authService.currentUser$.subscribe(user => this.user = user);
   }
 
+  
+
   ngOnInit() {
     this.authService.currentUser$.subscribe((user: User|  null) => {
       this.user = user;

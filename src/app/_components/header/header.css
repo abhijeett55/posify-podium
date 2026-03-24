@@ -8,14 +8,13 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-/* LEFT */
 .header-left .logo-text {
   font-size: 18px;
   font-weight: 600;
   color: #4f46e5;
 }
 
-/* CENTER SEARCH */
+
 .header-center {
   flex: 1;
   display: flex;
@@ -37,7 +36,6 @@
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* RIGHT USER */
 .header-right {
   display: flex;
   align-items: center;
@@ -46,8 +44,8 @@
 
 /* Avatar */
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -64,7 +62,6 @@
   color: #374151;
 }
 
-/* Logout Button */
 .logout-btn {
   padding: 5px 10px;
   border: none;

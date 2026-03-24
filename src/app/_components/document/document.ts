@@ -134,7 +134,7 @@ export class DocumentComponent {
   
   onRowsPerPageChange(value: string) {
     this.rowsPerPage = Number(value);
-    this.currentPage = 1; // reset to first page
+    this.currentPage = 1;
   }
 
   
