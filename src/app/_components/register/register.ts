@@ -15,14 +15,15 @@ import { Router } from '@angular/router';
 export class Register {
 
   constructor(private router: Router, private authService: Auth) { }
+    
   registerWithGoogle() {
-    console.log("Registered");
+    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
   }
 
 
   
   loginWithGithub() {
-    console.log("Github Authenticated");
+    window.location.href = 'http://localhost:8080/oauth2/authorization/github';
   }
 
   onRegister(form: NgForm) {
