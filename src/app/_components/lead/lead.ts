@@ -90,10 +90,14 @@ createLead() {
           email: '',
           phone: '',
           assignedTo: '',
-          status: 'New'
+          status: ''
         };
+        this.isSubmitting = false;
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        console.error(err);
+        this.isSubmitting = false;
+      }
     });
-}
+  }
 }
