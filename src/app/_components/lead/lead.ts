@@ -25,6 +25,7 @@ export class Lead {
   constructor(private http: HttpClient) {}
   searchText = '';
   showModal = false;
+  isSubmitting = false;
   
   leadForm: any = {
     expectedDate: '',
@@ -72,6 +73,8 @@ export class Lead {
     });
 }
 createLead() {
+  if(this.isSubmitting) return;
+  this.isSubmitting = true;
   this.http.post('http://localhost:8080/api/leads', this.leadForm)
     .subscribe({
       next: () => {
