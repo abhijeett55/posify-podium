@@ -28,7 +28,6 @@ export interface Report {
 export class Reports {
 
   user: any = null;
-
   form: Report = {
   name: '',
   description: '',
@@ -38,42 +37,65 @@ export class Reports {
   status: 'new',
   assignedTo: '',
   feedback: ''
-};
+  };
 
-constructor(private authService: Auth,
+  reports: Report[] = [];
+  isSubmitting = false;
+
+  constructor(private authService: Auth,
   private reportService: ReportService) {}
 
   ngOnInit() {
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
 
-    if (user) {
-      this.form.assignedTo = user.email;
-    }
-  });
-}
+      if (user) {
+        this.form.assignedTo = user.email;
+      }
+    });
 
-create(status: string) {
-  this.form.status = status;
+    this.loadReports();
+  }
 
-  this.reportService.createReport(this.form).subscribe({
-    next: (res) => {
-      console.log("Saved:", res);
+  create(status: string) {
+    if (this.isSubmitting) return;
 
-      this.form = {
-        name: '',
-        description: '',
-        currentDate: '',
-        expectedDate: '',
-        budget: '',
-        status: 'new',
-        assignedTo: this.user?.email || '',
-        feedback: ''
-      };
-    },
-    error: (err) => {
-      console.error("Error saving:", err);
-    }
-  });
-}
+    this.isSubmitting = true;
+
+    this.form.status = status;
+
+    this.reportService.createReport(this.form).subscribe({
+      next: (res) => {
+        console.log("Saved:", res);
+
+        this.reports.push(res);
+
+        this.form = {
+          name: '',
+          description: '',
+          currentDate: '',
+          expectedDate: '',
+          budget: '',
+          status: 'new',
+          assignedTo: this.user?.email || '',
+          feedback: ''
+        };
+
+        this.isSubmitting = false;
+      },
+      error: (err) => {
+        console.error("Error saving:", err);
+        this.isSubmitting = false;
+      }
+    });
+  }
+
+  loadReports() {
+    this.reportService.getReports().subscribe({
+      next: (data) => {
+        this.reports = data;
+      },
+      error: (err) => console.error(err)
+    });
+  }
 }

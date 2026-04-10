@@ -1,63 +1,109 @@
-<div class="card-container">
+<div class="page">
 
-  <div class="card">
-    <h2>Create Report</h2>
+  <div class="header">
+    <h1>Reports</h1>
+  </div>
 
-    <!-- Name -->
-    <div class="form-group">
-      <label>Report Name</label>
-      <input type="text" [(ngModel)]="form.name" placeholder="Enter name">
+  <div class="card-container">
+
+    <div class="card">
+      <h2>Create Report</h2>
+
+      <!-- ✅ FORM START -->
+      <form (ngSubmit)="create('new')">
+
+        <!-- Name -->
+        <div class="form-group">
+          <label>Report Name</label>
+          <input type="text" [(ngModel)]="form.name" name="name" required>
+        </div>
+
+        <!-- Dates -->
+        <div class="form-group">
+          <label>Current Date</label>
+          <input type="date" [(ngModel)]="form.currentDate" name="currentDate">
+        </div>
+
+        <div class="form-group">
+          <label>Expected Close Date</label>
+          <input type="date" [(ngModel)]="form.expectedDate" name="expectedDate">
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label>Description</label>
+          <textarea [(ngModel)]="form.description" name="description"></textarea>
+        </div>
+
+        <!-- Assigned -->
+        <div class="form-group">
+          <label>Assigned To</label>
+          <input type="text" [value]="user?.email" readonly>
+        </div>
+
+        <!-- Budget -->
+        <div class="form-group">
+          <label>Budget</label>
+          <input type="number" [(ngModel)]="form.budget" name="budget">
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+          <label>Status</label>
+          <select [(ngModel)]="form.status" name="status">
+            <option value="new">New</option>
+            <option value="analysis">Need Analysis</option>
+            <option value="won">Won</option>
+            <option value="lost">Lost</option>
+          </select>
+        </div>
+
+        <!-- Feedback -->
+        <div class="form-group">
+          <label>Feedback</label>
+          <textarea [(ngModel)]="form.feedback" name="feedback"></textarea>
+        </div>
+
+        <!-- ✅ BUTTON -->
+        <button type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Creating...' : 'Create' }}
+        </button>
+
+      </form>
+      <!-- ✅ FORM END -->
+
     </div>
+  </div>
 
-    <!-- Date -->
+  <!-- ✅ TABLE (REAL DATA) -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Report Name</th>
+          <th>Current Date</th>
+          <th>Expected Close Date</th>
+          <th>Description</th>
+          <th>Assigned To</th>
+          <th>Budget</th>
+          <th>Status</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
 
-    <div class="form-group">
-      <label>Current Date</label>
-      <input type="date" [(ngModel)]="form.currentDate" class = 'date-input'>
-    </div>
-
-    <div class="form-group">
-      <label>Expected Close Date</label>
-      <input type="date" [(ngModel)]="form.expectedDate" class = 'date-input'>
-    </div>
-
-    <!-- Description -->
-    <div class="form-group">
-      <label>Description</label>
-      <textarea [(ngModel)]="form.description" placeholder="Enter description" class = 'desc'></textarea>
-    </div>
-
-    <!-- Assigned To -->
-    <div class="form-group">
-      <label>Assigned To</label>
-      <input type="text" [value]="user?.email" readonly>
-    </div>
-
-    <!-- Budget -->
-    <div class="form-group">
-      <label>Budget</label>
-      <input type="number" [(ngModel)]="form.budget" placeholder="Enter amount">
-    </div>
-
-    <!-- Status -->
-    <div class="form-group">
-      <label>Status</label>
-      <select [(ngModel)]="form.status">
-        <option value="new">New</option>
-        <option value="analysis">Need Analysis</option>
-        <option value="won">Won</option>
-        <option value="lost">Lost</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Feedback</label>
-      <textarea [(ngModel)]="form.feedback" placeholder="Enter Feedback" class = "feed"></textarea>
-    </div>
-
-    <!-- Button -->
-    <button (click)="create('new')">Create</button>
-
+      <tbody>
+        <tr *ngFor="let report of reports">
+          <td>{{ report.name }}</td>
+          <td>{{ report.currentDate }}</td>
+          <td>{{ report.expectedDate }}</td>
+          <td>{{ report.description }}</td>
+          <td>{{ report.assignedTo }}</td>
+          <td>{{ report.budget }}</td>
+          <td>{{ report.status }}</td>
+          <td>{{ report.feedback }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

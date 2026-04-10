@@ -2,7 +2,6 @@
   padding: 25px;
 }
 
-/* HEADER */
 .header h1 {
   font-size: 28px;
   font-weight: 600;
@@ -12,7 +11,7 @@
   color: #6b7280;
 }
 
-/* TOOLBAR */
+
 .toolbar {
   display: flex;
   justify-content: space-between;
@@ -77,14 +76,14 @@
   color: #9ca3af;
 }
 
-/* EMPTY STATE */
+
 .empty-state {
   text-align: center;
   color: #9ca3af;
   margin-top: 40px;
 }
 
-/* MODAL */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -118,7 +117,7 @@
   border: 1px solid #d1d5db;
 }
 
-/* BUTTONS */
+
 .actions {
   display: flex;
   justify-content: space-between;

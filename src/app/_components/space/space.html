@@ -1,23 +1,23 @@
 <div class="page">
 
-  <!-- HEADER -->
+  
   <div class="header">
     <h1>Space</h1>
     <p>Everything you need to know about your Space</p>
   </div>
 
-  <!-- TOOLBAR -->
+  
   <div class="toolbar">
     <h4>Create Space</h4>
     <button class="add-btn" (click)="openModal()">+</button>
   </div>
 
-  <!-- EMPTY STATE -->
+  
   <div *ngIf="spaces.length === 0" class="empty-state">
     <p>No spaces created yet</p>
   </div>
 
-  <!-- GRID -->
+  
   <div class="space-grid">
 
     <div 
@@ -25,17 +25,17 @@
       *ngFor="let s of spaces"
     >
 
-      <!-- DELETE BUTTON -->
+      
       <button 
         class="delete-btn"
         (click)="deleteSpace(s.id!, $event)">
         ✕
       </button>
 
-      <!-- CARD -->
+      
       <section class="card" [ngClass]="s.type">
 
-        <!-- ICON -->
+        
         <svg
           viewBox="0 0 16 16"
           class="card-icon"
@@ -48,7 +48,7 @@
           />
         </svg>
 
-        <!-- CONTENT -->
+        
         <div class="card__content">
           <p class="card__title">{{ s.name }}</p>
           <p class="card__description">
@@ -62,7 +62,7 @@
 
   </div>
 
-  <!-- MODAL -->
+  
   <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
 
     <div class="modal" (click)="$event.stopPropagation()">

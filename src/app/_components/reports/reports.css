@@ -1,7 +1,27 @@
+/* Page Layout */
+.page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 28px;
+  color: #333;
+}
+
+/* Card */
 .card-container {
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 20px;
 }
 
 .card {
@@ -14,15 +34,10 @@
 
 .card h2 {
   margin-bottom: 20px;
+  color: #444;
 }
 
-.date-input {
-  padding: 8px;
-  border-radius: 6px;
-  color: black;
-  border: 1px solid #555;
-}
-
+/* Form */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -32,20 +47,45 @@
 label {
   font-size: 14px;
   margin-bottom: 5px;
+  color: #555;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 14px;
+  outline: none;
 }
 
-desc {
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #6a5af9;
+}
+
+/* Textarea fixes */
+.desc {
   resize: none;
   height: 80px;
 }
 
+.feed {
+  resize: none;
+  height: 60px;
+}
+
+/* Date */
+.date-input {
+  padding: 8px;
+  border-radius: 6px;
+  color: black;
+  border: 1px solid #555;
+}
+
+/* Button */
 button {
   width: 100%;
   padding: 12px;
@@ -55,13 +95,48 @@ button {
   color: white;
   font-size: 16px;
   cursor: pointer;
-}
-
-feed {
-  resize: none;
-  height: 40px;
+  transition: 0.3s;
 }
 
 button:hover {
   opacity: 0.9;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Table */
+.table-container {
+  margin-top: 40px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+thead {
+  background: #6a5af9;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tr:hover {
+  background: #eef2ff;
 }
