@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SpaceService } from '../../_services/space.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface SpaceModal {
   id?: string;
@@ -33,10 +35,13 @@ export class Space implements OnInit {
     { label: 'Product Discovery', value: 'product' }
   ];
 
-  constructor(private spaceService: SpaceService) {}
+  constructor(private spaceService: SpaceService,
+    @Inject(PLATFORM_ID) private platformId: Object) {}
 
   
   ngOnInit() {
+    
+    if (!isPlatformBrowser(this.platformId)) return;
     this.loadSpaces();
   }
 

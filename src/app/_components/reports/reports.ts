@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Auth } from '../../_services/auth';
 import { ReportService } from '../../_services/report.service';
 
@@ -43,7 +45,9 @@ export class Reports {
   isSubmitting = false;
 
   constructor(private authService: Auth,
-  private reportService: ReportService) {}
+  private reportService: ReportService,
+  @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
     this.authService.currentUser$.subscribe(user => {
@@ -53,6 +57,8 @@ export class Reports {
         this.form.assignedTo = user.email;
       }
     });
+
+    if (!isPlatformBrowser(this.platformId)) return;
 
     this.loadReports();
   }

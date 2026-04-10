@@ -37,29 +37,16 @@ export class Emails {
     @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
-
   ngOnInit() {
 
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
     });
 
-
-    if (isPlatformBrowser(this.platformId) && !this.user) {
-      const email = localStorage.getItem('userEmail');
-      const name = localStorage.getItem('userName');
-      if(email) {
-        this.user = {
-        email: email,
-        name: name || 'User'
-        };
-      }
-    }
-
+    if (!isPlatformBrowser(this.platformId)) return;
 
     this.loadEmailsFromServer();
   }
-
   selectMail(mail: EmailModel) {
     this.selectedMail = mail;
 

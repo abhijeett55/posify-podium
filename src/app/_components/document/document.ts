@@ -59,30 +59,31 @@ export class DocumentComponent {
   }
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     this.loadDocuments();
   }
 
+  
   loadDocuments() {
-
-  if (!isPlatformBrowser(this.platformId)) {
-    return;
-  }
-
     const email = localStorage.getItem("userEmail") || "";
+
     console.log("Fetching documents for:", email);
+
     this.documentService.getUserDocuments(email)
-      .subscribe((docs: any) => {
-        this.allDocuments = docs.map((d: any) => ({
-          id: d.id,
-          dateCreated: d.dateCreated,
-          assignedTo: d.userEmail,
-          name: d.fileName,
-          description: d.description,
-          selected: false
-        }));
-
+      .subscribe({
+        next: (docs: any) => {
+          this.allDocuments = docs.map((d: any) => ({
+            id: d.id,
+            dateCreated: d.dateCreated,
+            assignedTo: d.userEmail,
+            name: d.fileName,
+            description: d.description,
+            selected: false
+          }));
+        },
+        error: (err) => console.error(err)
       });
-
   }
 
 

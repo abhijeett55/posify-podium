@@ -9,7 +9,7 @@ import { EmailModel } from '../_components/emails/emails';
 })
 export class EmailService {
 
-  private apiUrl = `${environment.apiUrl}/api/emails`;
+  private apiUrl = `${environment.apiUrl}/emails`;
   constructor(private http: HttpClient) { }
 
 

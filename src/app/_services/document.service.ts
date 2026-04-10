@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 export class DocumentService {
 
   
-  private api = `${environment.apiUrl}/api/documents`;
+  private api = `${environment.apiUrl}/documents`;
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
