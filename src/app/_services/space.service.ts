@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../_environment/environment';
 
 export interface Space {
   id?: string;
@@ -13,22 +14,22 @@ export interface Space {
   providedIn: 'root',
 })
 export class SpaceService {
-
-  private api = 'http://localhost:8080/api/spaces';
+  
+  private apiUrl = `${environment.apiUrl}/spaces`;
 
   constructor(private http: HttpClient) {}
 
   getSpaces(): Observable<Space[]> {
-    return this.http.get<Space[]>(this.api);
+    return this.http.get<Space[]>(this.apiUrl);
   }
 
   createSpace(space: Space): Observable<Space> {
-    return this.http.post<Space>(this.api, space);
+    return this.http.post<Space>(this.apiUrl, space);
   }
 
 
   deleteSpace(id: string) {
-    return this.http.delete(`${this.api}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
   
 }

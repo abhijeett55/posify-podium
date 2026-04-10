@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../_environment/environment';
 
 export interface User {
   name: string;
@@ -14,7 +15,8 @@ export interface User {
 })
 export class Auth {
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  
+  private apiUrl = `${environment.apiUrl}/auth`;
   private currentUserSubject = new BehaviorSubject<User | null>(this.getUserFromStorage());
   public currentUser$ = this.currentUserSubject.asObservable();
 

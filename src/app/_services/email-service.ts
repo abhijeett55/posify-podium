@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../_environment/environment';
 import { EmailModel } from '../_components/emails/emails';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { EmailModel } from '../_components/emails/emails';
 })
 export class EmailService {
 
-  private apiUrl = 'http://localhost:8080/api/emails';
+  private apiUrl = `${environment.apiUrl}/api/emails`;
   constructor(private http: HttpClient) { }
 
 

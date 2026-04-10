@@ -1,14 +1,15 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../_environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DocumentService {
 
-  private api = 'http://localhost:8080/api/documents';
-
+  
+  private api = `${environment.apiUrl}/api/documents`;
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
