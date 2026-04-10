@@ -1,7 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
-import { environment } from '../_environment/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
