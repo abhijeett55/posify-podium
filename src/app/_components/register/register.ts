@@ -15,15 +15,12 @@ import { Router } from '@angular/router';
 export class Register {
 
   constructor(private router: Router, private authService: Auth) { }
-    
   registerWithGoogle() {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = 'https://posify-podiumbackend.onrender.com/oauth2/authorization/google';
   }
 
-
-  
   loginWithGithub() {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/github';
+    window.location.href = 'https://posify-podiumbackend.onrender.com/oauth2/authorization/github';
   }
 
   onRegister(form: NgForm) {
@@ -45,6 +42,7 @@ export class Register {
       },
       error: (err) => {
         console.error('Registration failed', err);
+        alert(err.error?.message || "Registration failed");
       }
     });
   }
